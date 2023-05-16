@@ -5,17 +5,20 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class SessionFactoryUtils {
-    private static SessionFactory factory;
+
+    private static volatile SessionFactory factory;
 
 
-    public static void init(){
-        factory = new Configuration()
-                .configure("hibernate.cfg.xml")
-                .buildSessionFactory();
+    public synchronized static void init(){
+        if (factory == null) {
+            factory = new Configuration()
+                    .configure("hibernate.cfg.xml")
+                    .buildSessionFactory();
+        }
     }
 
+
     public static Session getSession() {
-//        factory.openSession();//////////////////////////
         return factory.getCurrentSession();
     }
 
