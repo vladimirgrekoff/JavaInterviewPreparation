@@ -13,11 +13,26 @@ ORDER by `Перерыв` DESC;
 
 -- use cinema;
 -- продажа билетов по сеансам
-select film_id as `№`,
-(select name from films where films.cinema_id = cinema_session.film_id) as `Фильм`,
-(select price from tickets where ticket_id = cinema_session.category) as `Цена`, 
-(select quantity from tickets where ticket_id = cinema_session.category) as `Продано`,
-((select price from tickets where ticket_id = cinema_session.category) * 
-(select quantity from tickets where ticket_id = cinema_session.category)) as `Выручка` from cinema_session
-order by `Выручка`, `Фильм`;
+SELECT session_id AS `Сеанс`,
+(SELECT name FROM films WHERE films.cinema_id = cinema_session.film_id) AS `Фильм`,
+(SELECT price FROM tickets WHERE ticket_id = cinema_session.category) AS `Цена`,
+(SELECT quantity FROM tickets WHERE ticket_id = cinema_session.category) AS `Продано`,
+((SELECT price FROM tickets WHERE ticket_id = cinema_session.category) *
+(SELECT quantity FROM tickets WHERE ticket_id = cinema_session.category)) AS `Выручка` FROM cinema_session
+-- order by film_id, `Выручка`, `Фильм`;
+ORDER BY session_id;
+
+-- use cinema;
+-- продажа билетов по названию фильма
+(SELECT film_id AS `№`, films.name AS `Фильм`, COUNT(films.name) AS `Демонстрации`, SUM(tickets.quantity) AS `Продано`,
+		SUM(tickets.quantity*tickets.price) AS `Выручка` FROM cinema_session
+JOIN films ON films.cinema_id = film_id
+JOIN tickets ON tickets.ticket_id = category
+GROUP BY films.name
+ORDER BY film_id)
+UNION ALL
+SELECT 'Итого:','','','', SUM(quantity*price)  FROM cinema_session
+JOIN tickets ON tickets.ticket_id = category;
+
+
 
