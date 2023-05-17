@@ -1,8 +1,5 @@
 package com.grekoff.hibernate.entity;
 
-
-
-
 import jakarta.persistence.*;
 
 

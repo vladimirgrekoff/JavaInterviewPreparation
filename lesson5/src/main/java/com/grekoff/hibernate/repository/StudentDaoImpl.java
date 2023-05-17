@@ -3,12 +3,8 @@ package com.grekoff.hibernate.repository;
 import com.grekoff.hibernate.entity.Student;
 import com.grekoff.hibernate.service.SessionFactoryUtils;
 import org.hibernate.Session;
-import org.hibernate.query.NativeQuery;
-import org.hibernate.query.Query;
-import org.hibernate.query.QueryProducer;
 
 import java.util.List;
-import java.util.Queue;
 
 
 public class StudentDaoImpl implements StudentDao {
