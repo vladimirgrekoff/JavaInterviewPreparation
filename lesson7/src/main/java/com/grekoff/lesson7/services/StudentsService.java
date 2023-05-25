@@ -7,18 +7,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StudentsService {
+public class StudentsService implements StudentsServiceAPI{
     private final StudentsRepository studentsRepository;
-
 
 
     public StudentsService(StudentsRepository studentsRepository) {
         this.studentsRepository = studentsRepository;
     }
+
     public List<Student> findAllStudents() {
         return studentsRepository.findAll();
     }
-
 
     public Student findById(Long id) {
         return studentsRepository.findById(id).get();
