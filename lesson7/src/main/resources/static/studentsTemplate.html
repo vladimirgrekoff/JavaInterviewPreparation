@@ -1,0 +1,53 @@
+
+<div class="container" ng-controller="studentsController">
+    <h3 align="center">Список студентов</h3>
+    <p>&nbsp;</p>
+    <div align="center"  ng-show="!showAddNewStudentForm">
+        <button class="btn btn-success" ng-click="showAddNewStudentForm = !showAddNewStudentForm">Добавить студента в список</button>
+    </div>
+    <div ng-show="showAddNewStudentForm">
+        <h3 align="center">Добавить студента в список</h3>
+        <p>&nbsp;</p>
+    <table class="table table-hover" cellpadding="0" cellspacing="0" align="center">
+        <tr>
+            <td><b>Имя студента</b></td>
+            <td><b>Возраст</b></td>
+            <td colspan="2" align="center"><b>Действие</b></td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <form novalidate>
+                <td><input class="form-control" type="text" ng-model="newStudent.name" id="name" name="name" placeholder="Имя" required/></td>
+                <td><input class="form-control" type="number" ng-model="newStudent.age" id="age" name="age" placeholder="Возраст" required/></td>
+                <td><button class="btn btn-primary" type="submit" ng-click="addNewStudent()">Добавить в список</button></td>
+            </form>
+            <td><button class="btn btn-success" ng-click="showAddNewStudentForm = !showAddNewStudentForm; clearForm()">Скрыть</button></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    <p>&nbsp;</p>
+
+    <table class="table table-hover" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><b>Id</b></td>
+            <td><b>Имя студента</b></td>
+            <td><b>Возраст</b></td>
+            <td colspan="2" align="center"><b>Действие</b></td>
+        </tr>
+        <tbody>
+        <tr ng-repeat="student in studentsList">
+            <td>{{student.id}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.age}}</td>
+            <td><button class="btn btn-primary" ng-click="showEditStudentsPage(student)">Правка</button></td>
+            <td><button class="btn btn-danger" ng-click="deleteStudent(student.id)">Удалить</button></td>
+        </tr>
+        <tr>
+            <td colspan="2"><b><i>Всего студентов в списке:</i></b></td>
+            <td align="left"><b>{{studentsList.length}}</b></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

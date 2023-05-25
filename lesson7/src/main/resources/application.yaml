@@ -1,0 +1,24 @@
+server:
+  port: 8189
+  servlet:
+    context-path: /lesson7
+spring:
+  sql:
+    init:
+      mode: always
+      schema-locations: "classpath:db/migration/mysql/schema.sql"
+      data-locations: "classpath:db/migration/mysql/data.sql"
+  datasource:
+    platform: mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/university
+    username: root
+    password: yjz,hm
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: true
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate: org.hibernate.dialect.MySQLDialect

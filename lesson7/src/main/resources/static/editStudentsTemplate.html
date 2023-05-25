@@ -1,0 +1,24 @@
+<div class="container" ng-controller="editController">
+    <h3 align="center">Правка личных данных студента</h3>
+    <p>&nbsp;</p>
+        <table class="table table-hover" cellpadding="0" cellspacing="0" align="center">
+            <tr>
+                <td><b>Id</b></td>
+                <td><b>Имя студента</b></td>
+                <td><b>Возраст</b></td>
+                <td><b>Действие</b></td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <form novalidate>
+                    <td>{{editStudent.id}}</td>
+                    <td><input class="form-control" type="text" ng-model="editStudent.name" id="name" name="name" placeholder="Имя" required/></td>
+                    <td><input class="form-control" type="number" ng-model="editStudent.age" id="age" name="age" placeholder="Возраст" required/></td>
+                    <td><button class="btn btn-primary" type="submit" ng-click="updateStudent(editStudent)">Внести изменения</button></td>
+                </form>
+            </tr>
+            </tbody>
+        </table>
+    <p align="center"><button class="btn btn-success" ng-click="showStudentsPage()" >К списку студентов</button></p>
+</div>
